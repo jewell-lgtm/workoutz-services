@@ -8,6 +8,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+      - id: 'auth'
+        uses: 'google-github-actions/auth@v0'
+        with:
+          credentials_json: '${{ secrets.GCLOUD_SERVICE_ACCOUNT_JSON }}'
       - uses: actions/checkout@v3
       - name: Use Node.js
         uses: actions/setup-node@v3
@@ -18,3 +22,13 @@ jobs:
       - run: yarn test --coverage
       - run: yarn test:e2e --coverage
       - run: echo "🍏 This job's status is ${{ job.status }}."
+      - id: 'deploy'
+        uses: 'google-github-actions/deploy-appengine@v0'
+        if:
+          - '{{ job.status }}' == 'success'
+          - '{{ github.ref }}' == 'refs/heads/main'
+      - id: 'test'
+        run: 'curl "${{ steps.deploy.outputs.url }}"'
+        if:
+          - '{{ job.status }}' == 'success'
+          - '{{ github.ref }}' == 'refs/heads/main'
