@@ -15,6 +15,6 @@ jobs:
           node-version: 16
       - run: yarn install --frozen-lockfile
       - run: yarn build
-      - run: yarn test
-      - run: yarn test:e2e
+      - run: yarn test --coverage
+      - run: yarn test:e2e --coverage
       - run: echo "🍏 This job's status is ${{ job.status }}."
