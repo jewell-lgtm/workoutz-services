@@ -2,11 +2,15 @@ module.exports = {
   parser: '@typescript-eslint/parser',
   parserOptions: {
     project: 'tsconfig.json',
-    tsconfigRootDir : __dirname, 
+    tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['@typescript-eslint/eslint-plugin'],
+  plugins: ['jest', '@typescript-eslint/eslint-plugin'],
   extends: [
+    'plugin:import/recommended',
+    'plugin:import/typescript',
+    'plugin:jest/recommended',
+    'plugin:unicorn/recommended',
     'plugin:@typescript-eslint/recommended',
     'plugin:prettier/recommended',
   ],
@@ -21,5 +25,23 @@ module.exports = {
     '@typescript-eslint/explicit-function-return-type': 'off',
     '@typescript-eslint/explicit-module-boundary-types': 'off',
     '@typescript-eslint/no-explicit-any': 'off',
+    'unicorn/no-array-for-each': 'off',
+    'unicorn/no-fn-reference-in-iterator': 'off',
+    'unicorn/no-reduce': 'off',
+    'unicorn/no-null': 'off',
+    'unicorn/prefer-number-properties': 'off',
+    'unicorn/prefer-optional-catch-binding': 'off',
+    'unicorn/prevent-abbreviations': 'off',
+    'import/order': [
+      'error',
+      {
+        'newlines-between': 'never',
+        alphabetize: {
+          order: 'asc',
+          caseInsensitive: true,
+        },
+        groups: ['builtin', 'external', 'internal', 'parent', 'sibling'],
+      },
+    ],
   },
 };
