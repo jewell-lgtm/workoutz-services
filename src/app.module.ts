@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { ConfigModule, ConfigService } from '@nestjs/config';
-import { TypeOrmModule } from '@nestjs/typeorm';
+import { TypeOrmModule, TypeOrmModuleOptions } from '@nestjs/typeorm';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -12,12 +12,16 @@ import { AppService } from './app.service';
     }),
     TypeOrmModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: (configService: ConfigService) => ({
-        type: 'postgres',
-        url: configService.get('DATABASE_URL'),
-        ssl: false,
-        synchronize: true,
-      }),
+      useFactory: (configService: ConfigService) => {
+        const config: TypeOrmModuleOptions = {
+          type: 'postgres',
+          url: configService.get('DATABASE_URL'),
+          ssl: false,
+          synchronize: true,
+        };
+        console.log('Connecting to database', { config });
+        return config;
+      },
       inject: [ConfigService],
     }),
   ],
