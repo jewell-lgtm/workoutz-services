@@ -15,7 +15,7 @@ import { MotivationsResolver } from "./motivations/motivations.resolver"
 		}),
 		TypeOrmModule.forRootAsync({
 			imports: [ConfigModule],
-			useFactory: (configService: ConfigService, logger: Logger) => {
+			useFactory: (configService: ConfigService) => {
 				const config: TypeOrmModuleOptions = {
 					type: "postgres",
 					host:
@@ -28,16 +28,16 @@ import { MotivationsResolver } from "./motivations/motivations.resolver"
 					ssl: false,
 					synchronize: true,
 				}
-				logger.log("******")
-				logger.log("******")
-				logger.log("******")
-				logger.log("******")
-				logger.log(config)
-				logger.log("******")
-				logger.log("******")
-				logger.log("******")
-				logger.log("******")
-				logger.log("******")
+				console.log("******")
+				console.log("******")
+				console.log("******")
+				console.log("******")
+				console.log(config)
+				console.log("******")
+				console.log("******")
+				console.log("******")
+				console.log("******")
+				console.log("******")
 				return config
 			},
 			inject: [ConfigService],
