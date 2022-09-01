@@ -1,5 +1,5 @@
 import { ApolloDriver } from "@nestjs/apollo"
-import { Logger, Module } from "@nestjs/common"
+import { Module } from "@nestjs/common"
 import { ConfigModule, ConfigService } from "@nestjs/config"
 import { GraphQLModule } from "@nestjs/graphql"
 import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm"
@@ -18,9 +18,7 @@ import { MotivationsResolver } from "./motivations/motivations.resolver"
 			useFactory: (configService: ConfigService) => {
 				const config: TypeOrmModuleOptions = {
 					type: "postgres",
-					host:
-						configService.get("INSTANCE_UNIX_SOCKET") ??
-						configService.get("POSTGRES_HOST"),
+					host: configService.get("POSTGRES_HOST"),
 					port: configService.get("POSTGRES_PORT"),
 					username: configService.get("POSTGRES_USER"),
 					password: configService.get("POSTGRES_PASSWORD"),
@@ -29,14 +27,7 @@ import { MotivationsResolver } from "./motivations/motivations.resolver"
 					synchronize: true,
 				}
 				console.log("******")
-				console.log("******")
-				console.log("******")
-				console.log("******")
 				console.log(config)
-				console.log("******")
-				console.log("******")
-				console.log("******")
-				console.log("******")
 				console.log("******")
 				return config
 			},

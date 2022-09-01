@@ -71,7 +71,7 @@ jobs:
         with:
           node-version: 16
       - run: yarn install --frozen-lockfile
-      - run: yarn create-db-config
+      - run: yarn env:create
         env:
           POSTGRES_HOST: /cloudsql/workoutz:europe-west3:workoutz
           POSTGRES_USER: postgres
