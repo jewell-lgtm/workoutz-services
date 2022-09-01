@@ -17,7 +17,7 @@ pgclient.connect()
 pgclient.query(
 	`SELECT *
    FROM information_schema.tables`,
-	values,
+	undefined,
 	(err, res) => {
 		if (err) throw err
 		console.log(err, res.rows) // Print the data in student table
