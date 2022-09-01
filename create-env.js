@@ -1,6 +1,6 @@
 import { writeFileSync } from "node:fs"
 
-function env(key: string): string {
+function env(key) {
 	const result = process.env[key]
 	if (!result) {
 		throw new Error(`Required env variable ${key} is not set`)

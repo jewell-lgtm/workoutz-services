@@ -13,26 +13,7 @@ import { MotivationsResolver } from "./motivations/motivations.resolver"
 			envFilePath: [".env.local", ".env"],
 			cache: true,
 		}),
-		TypeOrmModule.forRootAsync({
-			imports: [ConfigModule],
-			useFactory: (configService: ConfigService) => {
-				const config: TypeOrmModuleOptions = {
-					type: "postgres",
-					host: configService.get("POSTGRES_HOST"),
-					port: configService.get("POSTGRES_PORT"),
-					username: configService.get("POSTGRES_USER"),
-					password: configService.get("POSTGRES_PASSWORD"),
-					database: configService.get("POSTGRES_DATABASE"),
-					ssl: false,
-					synchronize: true,
-				}
-				console.log("******")
-				console.log(config)
-				console.log("******")
-				return config
-			},
-			inject: [ConfigService],
-		}),
+
 		GraphQLModule.forRoot({
 			driver: ApolloDriver,
 			autoSchemaFile: true,
