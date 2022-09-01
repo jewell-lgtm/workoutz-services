@@ -5,7 +5,7 @@ module.exports = {
     tsconfigRootDir: __dirname,
     sourceType: 'module',
   },
-  plugins: ['jest', '@typescript-eslint/eslint-plugin'],
+  plugins: ['import', 'jest', '@typescript-eslint/eslint-plugin'],
   extends: [
     'plugin:import/recommended',
     'plugin:import/typescript',
@@ -32,6 +32,8 @@ module.exports = {
     'unicorn/prefer-number-properties': 'off',
     'unicorn/prefer-optional-catch-binding': 'off',
     'unicorn/prevent-abbreviations': 'off',
+    'import/no-extraneous-dependencies': 'error',
+    '@typescript-eslint/no-unused-vars': 'error',
     'import/order': [
       'error',
       {
@@ -43,5 +45,12 @@ module.exports = {
         groups: ['builtin', 'external', 'internal', 'parent', 'sibling'],
       },
     ],
+  },
+  settings: {
+    'import/resolver': {
+      typescript: {
+        project: '.',
+      },
+    },
   },
 };
