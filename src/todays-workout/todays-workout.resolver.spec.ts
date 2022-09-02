@@ -18,20 +18,16 @@ describe("TodaysWorkoutResolver", () => {
 		expect(resolver).toBeDefined()
 	})
 
-	it.each`
-		today                | expected
-		${Weekday.Monday}    | ${[ExerciseFamily.push, ExerciseFamily.legs]}
-		${Weekday.Tuesday}   | ${[ExerciseFamily.pull, ExerciseFamily.squat]}
-		${Weekday.Wednesday} | ${[ExerciseFamily.bridge, ExerciseFamily.twist]}
-		${Weekday.Thursday}  | ${[ExerciseFamily.push, ExerciseFamily.legs]}
-		${Weekday.Friday}    | ${[ExerciseFamily.pull, ExerciseFamily.squat]}
-		${Weekday.Saturday}  | ${[ExerciseFamily.bridge, ExerciseFamily.twist]}
-		${Weekday.Sunday}    | ${[ExerciseFamily.rest]}
-	`(
-		"gets workouts from the correct family: $today, $expected",
-		({ today, expected }) => {
-			const result = resolver.todaysWorkout(today)
-			expect(result.difficulties.map((d) => d.exerciseFamily)).toEqual(expected)
-		},
-	)
+	it.each<[Weekday, ExerciseFamily[]]>([
+		[Weekday.Monday, [ExerciseFamily.push, ExerciseFamily.legs]],
+		[Weekday.Tuesday, [ExerciseFamily.pull, ExerciseFamily.squat]],
+		[Weekday.Wednesday, [ExerciseFamily.bridge, ExerciseFamily.twist]],
+		[Weekday.Thursday, [ExerciseFamily.push, ExerciseFamily.legs]],
+		[Weekday.Friday, [ExerciseFamily.pull, ExerciseFamily.squat]],
+		[Weekday.Saturday, [ExerciseFamily.bridge, ExerciseFamily.twist]],
+		[Weekday.Sunday, [ExerciseFamily.rest]],
+	])("gets workouts from the correct family: $0, $1", (today, expected) => {
+		const result = resolver.todaysWorkout({ today })
+		expect(result.difficulties.map((d) => d.exerciseFamily)).toEqual(expected)
+	})
 })
