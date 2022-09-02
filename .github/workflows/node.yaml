@@ -33,6 +33,8 @@ jobs:
         with:
           node-version: 18
       - run: yarn install --frozen-lockfile
+      - name: Check types
+        run: yarn tsc --noEmit
       - name: Deploy to Cloud Run
         id: "deploy"
         uses: google-github-actions/deploy-cloudrun@v0
