@@ -1,16 +1,23 @@
-import { Query, Resolver } from "@nestjs/graphql"
+import { Args, ArgsType, Field, Query, Resolver } from "@nestjs/graphql"
 import { Difficulty } from "@/exercise/difficulty.dto"
 import { ExerciseFamily } from "@/exercise/exercise-family.dto"
 import { TodaysWorkout } from "./todays-workout.dto"
 import { Weekday } from "./weekday.dto"
 
+@ArgsType()
+class TodaysWorkoutArgs {
+	@Field(() => Weekday)
+	today: Weekday
+}
+
 @Resolver()
 export class TodaysWorkoutResolver {
 	@Query(() => TodaysWorkout)
-	todaysWorkout(today: Weekday): TodaysWorkout {
+	todaysWorkout(@Args() { today }: TodaysWorkoutArgs): TodaysWorkout {
 		const families = this.getFamilies(today)
 		const difficulties = this.getDifficulties(families)
 		const lastCompletedSets = this.getLastCompletedSets(difficulties)
+
 		return {
 			today,
 			difficulties,

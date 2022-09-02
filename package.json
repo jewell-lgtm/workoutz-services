@@ -22,6 +22,7 @@
 		"env:create": "node create-env.js"
 	},
 	"dependencies": {
+		"@google-cloud/firestore": "^6.0.0",
 		"@nestjs/apollo": "^10.0.22",
 		"@nestjs/common": "9.0.11",
 		"@nestjs/config": "2.2.0",

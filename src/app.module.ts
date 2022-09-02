@@ -1,12 +1,11 @@
 import { ApolloDriver } from "@nestjs/apollo"
 import { Module } from "@nestjs/common"
-import { ConfigModule, ConfigService } from "@nestjs/config"
+import { ConfigModule } from "@nestjs/config"
 import { GraphQLModule } from "@nestjs/graphql"
-import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm"
-import { AppController } from "./app.controller"
-import { AppService } from "./app.service"
-import { MotivationsResolver } from "./motivations/motivations.resolver"
-import { TodaysWorkoutResolver } from './todays-workout/todays-workout.resolver';
+import { AppController } from "@/app.controller"
+import { AppService } from "@/app.service"
+import { MotivationsResolver } from "@/motivations/motivations.resolver"
+import { TodaysWorkoutResolver } from "@/todays-workout/todays-workout.resolver"
 
 @Module({
 	imports: [
@@ -19,7 +18,7 @@ import { TodaysWorkoutResolver } from './todays-workout/todays-workout.resolver'
 			driver: ApolloDriver,
 			autoSchemaFile: true,
 			sortSchema: true,
-			resolvers: [MotivationsResolver],
+			resolvers: [MotivationsResolver, TodaysWorkoutResolver],
 		}),
 	],
 	controllers: [AppController],
