@@ -6,6 +6,7 @@ import { TypeOrmModule, TypeOrmModuleOptions } from "@nestjs/typeorm"
 import { AppController } from "./app.controller"
 import { AppService } from "./app.service"
 import { MotivationsResolver } from "./motivations/motivations.resolver"
+import { TodaysWorkoutResolver } from './todays-workout/todays-workout.resolver';
 
 @Module({
 	imports: [
@@ -22,6 +23,6 @@ import { MotivationsResolver } from "./motivations/motivations.resolver"
 		}),
 	],
 	controllers: [AppController],
-	providers: [AppService, MotivationsResolver],
+	providers: [AppService, MotivationsResolver, TodaysWorkoutResolver],
 })
 export class AppModule {}
