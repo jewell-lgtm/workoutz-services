@@ -6,4 +6,9 @@ export class Motivation {
 	motivationLevel: number
 	@Field(() => Boolean)
 	shouldIWorkOutToday: boolean
+
+	constructor(motivationLevel: number, shouldIWorkOutToday: boolean) {
+		this.motivationLevel = motivationLevel
+		this.shouldIWorkOutToday = shouldIWorkOutToday
+	}
 }

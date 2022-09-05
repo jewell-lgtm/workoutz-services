@@ -8,6 +8,10 @@ import { Weekday } from "./weekday.dto"
 class TodaysWorkoutArgs {
 	@Field(() => Weekday)
 	today: Weekday
+
+	constructor(today: Weekday) {
+		this.today = today
+	}
 }
 
 @Resolver()

@@ -12,4 +12,14 @@ export class TodaysWorkout {
 
 	@Field(() => [[String, Int]])
 	lastCompletedSets: [string, number][]
+
+	constructor(
+		today: Weekday,
+		difficulties: Difficulty[],
+		lastCompletedSets: [string, number][],
+	) {
+		this.today = today
+		this.difficulties = difficulties
+		this.lastCompletedSets = lastCompletedSets
+	}
 }

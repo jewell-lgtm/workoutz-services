@@ -15,4 +15,20 @@ export class Difficulty {
 	exerciseFamily: ExerciseFamily
 	@Field(() => Int)
 	level: number
+
+	constructor(
+		id: string,
+		name: string,
+		description: string,
+		targetReps: number,
+		exerciseFamily: ExerciseFamily,
+		level: number,
+	) {
+		this.id = id
+		this.name = name
+		this.description = description
+		this.targetReps = targetReps
+		this.exerciseFamily = exerciseFamily
+		this.level = level
+	}
 }
