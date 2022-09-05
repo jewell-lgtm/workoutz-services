@@ -20,6 +20,8 @@ jobs:
       - run: yarn test --coverage
       - name: E2E Tests
         run: yarn test:e2e --coverage
+      - name: Check Types
+        run: yarn tsc --noEmit
 
   deploy:
     needs: [test]
@@ -36,9 +38,6 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18
-      - run: yarn install --frozen-lockfile
-      - name: Check types
-        run: yarn tsc --noEmit
       - name: Deploy to Cloud Run
         id: "deploy"
         uses: google-github-actions/deploy-cloudrun@v0
