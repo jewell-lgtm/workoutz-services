@@ -4,6 +4,7 @@ import { ConfigModule } from "@nestjs/config"
 import { GraphQLModule } from "@nestjs/graphql"
 import { AppController } from "@/app.controller"
 import { AppService } from "@/app.service"
+import { GoogleCloudModule } from "@/google-cloud/google-cloud.module"
 import { MotivationsResolver } from "@/motivations/motivations.resolver"
 import { TodaysWorkoutResolver } from "@/todays-workout/todays-workout.resolver"
 
@@ -20,6 +21,8 @@ import { TodaysWorkoutResolver } from "@/todays-workout/todays-workout.resolver"
 			sortSchema: true,
 			resolvers: [MotivationsResolver, TodaysWorkoutResolver],
 		}),
+
+		GoogleCloudModule,
 	],
 	controllers: [AppController],
 	providers: [AppService, MotivationsResolver, TodaysWorkoutResolver],
